@@ -106,7 +106,7 @@ public class GameSetup : MonoBehaviour
             }
 
             // Cuando todas las bolas de la fila están puestas, pasa a la siguiente fila
-            firstInRowPosition += new Vector3(-1, 0, 0).normalized * ballDiameter;
+            firstInRowPosition += Vector3.back * (Mathf.Sqrt(3) * ballRadius) + Vector3.left * ballRadius;
             currentPosition = firstInRowPosition;
             NumInThisRow++;
         }
