@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI currentTurnText;
     [SerializeField] TextMeshProUGUI popUp;
 
-    [SerializeField] GameObject restartButton;
+    [SerializeField] GameObject buttonRestart;
     [SerializeField] Transform headPosition;
 
     // Start is called before the first frame update
@@ -36,6 +37,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 
     bool Scratch()
@@ -128,6 +134,7 @@ public class GameManager : MonoBehaviour
             if(ball.IsBallRed())
             {
                 player1BallsRemaining--;
+                player1BallsText.text = "Bolas restantes jugador 1: " + player1BallsRemaining;
                 if (player1BallsRemaining <= 0)
                 {
                     isWinningShotForPlayer1 = true;
@@ -140,7 +147,8 @@ public class GameManager : MonoBehaviour
             else
             {
                 player2BallsRemaining--;
-                if(player2BallsRemaining <= 0)
+                player2BallsText.text = "Bolas restantes jugador 2: " + player2BallsRemaining;
+                if (player2BallsRemaining <= 0)
                 {
                     isWinningShotForPlayer2 = true;
                 }
@@ -158,14 +166,14 @@ public class GameManager : MonoBehaviour
     {
         popUp.gameObject.SetActive(true);
         popUp.text = message;
-        restartButton.SetActive(true);
+        buttonRestart.SetActive(true);
     }
 
     void Win(string player)
     {
         popUp.gameObject.SetActive(true);
         popUp.text = player + " ha ganado";
-        restartButton.SetActive(true);
+        buttonRestart.SetActive(true);
     }
 
     void NextPlayerTurn()
