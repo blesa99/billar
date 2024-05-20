@@ -15,7 +15,7 @@ public class GameSetup : MonoBehaviour
     [SerializeField] Transform headBallPosition;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         ballRadius = ballPrefab.GetComponent<SphereCollider>().radius * 100f;
         ballDiameter = ballRadius * 2f;
