@@ -2318,7 +2318,7 @@ MonoBehaviour:
   rotationSpeed: 1440
   offset: {x: 1.2, y: 0.68, z: 0}
   downAngle: 15
-  power: 5
+  power: 2
 --- !u!1 &1129952766
 GameObject:
   m_ObjectHideFlags: 0
