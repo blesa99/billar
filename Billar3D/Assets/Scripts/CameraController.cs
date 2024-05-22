@@ -66,9 +66,9 @@ public class CameraController : MonoBehaviour
             }
             else if (isTakingShot)
             {
-                if (savedMousePosition + Input.GetAxis("MouseY") <= 0)
+                if (savedMousePosition + Input.GetAxis("Mouse Y") <= 0)
                 {
-                    savedMousePosition += Input.GetAxis("MouseY");
+                    savedMousePosition += Input.GetAxis("Mouse Y");
                     if (savedMousePosition <= maxDrawDistance) // Aquí seguramente sea mayor o igual
                     {
                         savedMousePosition = maxDrawDistance;
