@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float shotTimer = 3f;
     private float currentTimer;
     [SerializeField] float movementThreshold;
+    private bool ballPocketed = false;
 
     [SerializeField] TextMeshProUGUI player1BallsText;
     [SerializeField] TextMeshProUGUI player2BallsText;
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
             if (allStopped)
             {
                 isWaitingForBallMovementToStop = false;
-                if (willSwapPlayer)
+                if (willSwapPlayer || !ballPocketed)
                 {
                     NextPlayerTurn();
                 }
@@ -74,6 +75,8 @@ public class GameManager : MonoBehaviour
                 {
                     SwitchCameras();
                 }
+                currentTimer = shotTimer;
+                ballPocketed = false;
             }
         }
     }
@@ -255,6 +258,7 @@ public class GameManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Ball")
         {
+            ballPocketed = true;
             if (CheckBall(other.gameObject.GetComponent<Ball>()))
             {
                 Destroy(other.gameObject);
