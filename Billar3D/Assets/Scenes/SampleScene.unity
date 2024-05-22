@@ -2413,6 +2413,7 @@ MonoBehaviour:
   offset: {x: 1.2, y: 0.68, z: 0}
   downAngle: 15
   power: 2
+  cueStick: {fileID: 3248787831150721662}
 --- !u!1 &1129952766
 GameObject:
   m_ObjectHideFlags: 0

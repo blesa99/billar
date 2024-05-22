@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] Vector3 offset;
     [SerializeField] float downAngle;
     [SerializeField] float power;
+    [SerializeField] GameObject cueStick;
     private float horizontalInput;
 
     Transform cueBall;
@@ -42,18 +43,20 @@ public class CameraController : MonoBehaviour
             ResetCamera();
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<Camera>().enabled)
         {
             Vector3 hitDirection = transform.forward;
             hitDirection = new Vector3(hitDirection.x, 0, hitDirection.z).normalized;
 
             cueBall.gameObject.GetComponent<Rigidbody>().AddForce(hitDirection * power, ForceMode.Impulse);
+            cueStick.SetActive(false);
             gameManager.SwitchCameras();
         }
     }
 
     public void ResetCamera()
     {
+        cueStick.SetActive(true);
         transform.position = cueBall.position + offset;
         transform.LookAt(cueBall.position);
         transform.localEulerAngles = new Vector3(downAngle, transform.localEulerAngles.y, 0);
