@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -9,8 +10,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] GameObject cueStick;
     private float horizontalInput;
 
+    private bool isTakingShot = false;
+    [SerializeField] float maxDrawDistance;
+    private float savedMousePosition;
+
     Transform cueBall;
     GameManager gameManager;
+    [SerializeField] TextMeshProUGUI powerText;
 
     // Start is called before the first frame update
     void Start()
@@ -38,15 +44,7 @@ public class CameraController : MonoBehaviour
             transform.RotateAround(cueBall.position, Vector3.up, horizontalInput);
         }
 
-        if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<Camera>().enabled)
-        {
-            Vector3 hitDirection = transform.forward;
-            hitDirection = new Vector3(hitDirection.x, 0, hitDirection.z).normalized;
-
-            cueBall.gameObject.GetComponent<Rigidbody>().AddForce(hitDirection * power, ForceMode.Impulse);
-            cueStick.SetActive(false);
-            gameManager.SwitchCameras();
-        }
+        Shoot();
     }
 
     public void ResetCamera()
@@ -55,5 +53,40 @@ public class CameraController : MonoBehaviour
         transform.position = cueBall.position + offset;
         transform.LookAt(cueBall.position);
         transform.localEulerAngles = new Vector3(downAngle, transform.localEulerAngles.y, 0);
+    }
+
+    void Shoot()
+    {
+        if (gameObject.GetComponent<Camera>().enabled)
+        {
+            if (Input.GetButtonDown("Fire1") && !isTakingShot)
+            {
+                isTakingShot = true;
+                savedMousePosition = 0f;
+            }
+            else if (isTakingShot)
+            {
+                if (savedMousePosition + Input.GetAxis("MouseY") <= 0)
+                {
+                    savedMousePosition += Input.GetAxis("MouseY");
+                    if (savedMousePosition <= maxDrawDistance) // Aquí seguramente sea mayor o igual
+                    {
+                        savedMousePosition = maxDrawDistance;
+                    }
+                    float powerValueNumber = ((savedMousePosition - 0) / (maxDrawDistance - 0)) * (100 - 0) + 0;
+                    powerText.text = "Fuerza: " + powerValueNumber.ToString() + "%";
+                }
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Vector3 hitDirection = transform.forward;
+                    hitDirection = new Vector3(hitDirection.x, 0, hitDirection.z).normalized;
+
+                    cueBall.gameObject.GetComponent<Rigidbody>().AddForce(hitDirection * power * Mathf.Abs(savedMousePosition), ForceMode.Impulse);
+                    cueStick.SetActive(false);
+                    gameManager.SwitchCameras();
+                    isTakingShot = false;
+                }
+            }
+        }
     }
 }
