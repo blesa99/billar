@@ -143,18 +143,6 @@ public class GameManager : MonoBehaviour
         Lose(player + " ha metido la blanca en el tiro final y ha perdido");
     }
 
-    void NoMoreBalls(CurrentPlayer player)
-    {
-        if (player == CurrentPlayer.Player1)
-        {
-            isWinningShotForPlayer1 = true;
-        }
-        else
-        {
-            isWinningShotForPlayer2 = true;
-        }
-    }
-
     bool CheckBall(Ball ball)
     {
         if (ball.IsCueBall())
