@@ -56,8 +56,9 @@ public class GameManager : MonoBehaviour
             bool allStopped = true;
             foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
             {
-                if(ball.GetComponent<Rigidbody>().velocity.magnitude <= movementThreshold)
+                if(ball.GetComponent<Rigidbody>().velocity.magnitude >= movementThreshold)
                 {
+                    Debug.Log(ball.GetComponent<Rigidbody>().velocity.magnitude);
                     allStopped = false;
                     break;
                 }
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
                 return true;
             }
         }
+        willSwapPlayer = true;
         return false;
     }
 
