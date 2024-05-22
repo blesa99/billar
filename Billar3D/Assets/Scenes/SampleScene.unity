@@ -2416,7 +2416,7 @@ MonoBehaviour:
   downAngle: 15
   power: 2
   cueStick: {fileID: 3248787831150721662}
-  maxDrawDistance: 0
+  maxDrawDistance: -5
   powerText: {fileID: 1656314009}
 --- !u!1 &1129952766
 GameObject:
@@ -3229,7 +3229,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 10, y: 10}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 255.8505, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1656314009
 MonoBehaviour:
@@ -5134,8 +5134,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c90433a88f0baee4bb29660bad114859, type: 2}
-  - {fileID: 2100000, guid: 8871863521daa7c46b8c9254a36aa0c9, type: 2}
+  - {fileID: 2100000, guid: 33f55513828f3a54dbb15d531f8d4a35, type: 2}
+  - {fileID: 2100000, guid: 33f55513828f3a54dbb15d531f8d4a35, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5662,7 +5662,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 127ced666919f49499414745f7f7a520, type: 2}
+  - {fileID: 2100000, guid: 212757ac02259fa418335c22b7b0dacf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5904,7 +5904,7 @@ Transform:
   m_GameObject: {fileID: 7744831163357654961}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.0020893053, y: 1.6017097, z: -3.1278877}
+  m_LocalPosition: {x: -0.0020893053, y: 1.565, z: -3.1278877}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6648,7 +6648,7 @@ Transform:
   m_GameObject: {fileID: 3199595227637274851}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.0020893202, y: 1.5804926, z: 3.2107675}
+  m_LocalPosition: {x: -0.0020893202, y: 1.531, z: 3.2107675}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
