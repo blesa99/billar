@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cueBall != null)
+        if (cueBall != null && !isTakingShot)
         {
             horizontalInput = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
 
@@ -72,9 +72,10 @@ public class CameraController : MonoBehaviour
                     if (savedMousePosition <= maxDrawDistance) // Aquí seguramente sea mayor o igual
                     {
                         savedMousePosition = maxDrawDistance;
-                    }
+                    }                    
                     float powerValueNumber = ((savedMousePosition - 0) / (maxDrawDistance - 0)) * (100 - 0) + 0;
-                    powerText.text = "Fuerza: " + powerValueNumber.ToString() + "%";
+                    int powerValueInt = Mathf.RoundToInt(powerValueNumber);
+                    powerText.text = "Fuerza: " + powerValueInt + "%";
                 }
                 if (Input.GetButtonDown("Fire1"))
                 {
