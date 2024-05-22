@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,16 +24,38 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject buttonRestart;
     [SerializeField] Transform headPosition;
 
+    [SerializeField] Camera cueStickCamera;
+    [SerializeField] Camera overheadCamera;
+
+    Camera currentCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         currentPlayer = CurrentPlayer.Player1;
+        currentCamera = cueStickCamera;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void SwitchCameras()
+    {
+        if (currentCamera == cueStickCamera)
+        {
+            cueStickCamera.enabled = false;
+            overheadCamera.enabled = true;
+            currentCamera = overheadCamera;
+        }
+        else
+        {
+            cueStickCamera.enabled = true;
+            overheadCamera.enabled = false;
+            currentCamera = cueStickCamera;
+        }
     }
 
     public void Restart()
@@ -46,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     bool Scratch()
     {
-        if(currentPlayer == CurrentPlayer.Player1)
+        if (currentPlayer == CurrentPlayer.Player1)
         {
             if (isWinningShotForPlayer1)
             {
@@ -56,7 +75,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if(isWinningShotForPlayer2)
+            if (isWinningShotForPlayer2)
             {
                 ScratchOnWinningShot("Jugador 2");
                 return true;
@@ -120,7 +139,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if(isWinningShotForPlayer2)
+                if (isWinningShotForPlayer2)
                 {
                     Win("Jugador 2");
                     return true;
@@ -131,7 +150,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Lógica para cuando no es ni la bola blanca ni la 8
-            if(ball.IsBallRed())
+            if (ball.IsBallRed())
             {
                 player1BallsRemaining--;
                 player1BallsText.text = "Bolas restantes jugador 1: " + player1BallsRemaining;
@@ -139,7 +158,7 @@ public class GameManager : MonoBehaviour
                 {
                     isWinningShotForPlayer1 = true;
                 }
-                if(currentPlayer != CurrentPlayer.Player1)
+                if (currentPlayer != CurrentPlayer.Player1)
                 {
                     NextPlayerTurn();
                 }
@@ -194,7 +213,7 @@ public class GameManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Ball")
         {
-            if(CheckBall(other.gameObject.GetComponent<Ball>()))
+            if (CheckBall(other.gameObject.GetComponent<Ball>()))
             {
                 Destroy(other.gameObject);
             }
