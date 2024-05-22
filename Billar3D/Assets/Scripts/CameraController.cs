@@ -9,10 +9,12 @@ public class CameraController : MonoBehaviour
     private float horizontalInput;
 
     Transform cueBall;
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
         {
             if (ball.GetComponent<Ball>().IsCueBall())
@@ -46,6 +48,7 @@ public class CameraController : MonoBehaviour
             hitDirection = new Vector3(hitDirection.x, 0, hitDirection.z).normalized;
 
             cueBall.gameObject.GetComponent<Rigidbody>().AddForce(hitDirection * power, ForceMode.Impulse);
+            gameManager.SwitchCameras();
         }
     }
 

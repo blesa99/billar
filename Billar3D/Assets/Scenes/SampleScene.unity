@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 14355492}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,8 +160,8 @@ MonoBehaviour:
   popUp: {fileID: 371170730}
   buttonRestart: {fileID: 1366242701}
   headPosition: {fileID: 511481403}
-  cueStickCamera: {fileID: 0}
-  overheadCamera: {fileID: 0}
+  cueStickCamera: {fileID: 963194227}
+  overheadCamera: {fileID: 651107470}
 --- !u!65 &14355493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1900,7 +1900,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651107468}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &651107470
 Camera:
   m_ObjectHideFlags: 0
@@ -1908,7 +1908,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651107468}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
